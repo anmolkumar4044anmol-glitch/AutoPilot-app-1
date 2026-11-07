@@ -1,0 +1,17 @@
+name: Inspect AutoPilot ZIP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Extract ZIP
+        run: |
+          mkdir extracted
+          unzip -q AutoPilot.zip -d extracted
+          echo "PROJECT FILES:"
+          find extracted -maxdepth 4 -type f | sort | head -200
